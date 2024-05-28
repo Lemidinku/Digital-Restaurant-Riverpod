@@ -1,0 +1,135 @@
+//Instruction
+// Since, the database is empty, you should create a user with admin role statically in the database.
+// You can use the following query to create a user, and change the role in your database to "admin" 
+
+// add all access tokens to your own tokens after login
+
+### ----------Auth----------------
+### auth admin signup
+
+POST http://localhost:5000/auth/signup
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "asdfasdf",
+    "phone": "0912345677"
+
+    // ----ATTENTION HERE----
+    // a role for the admin should be statically changed in the database. Because. the users should not be able to choose his role.
+}
+
+### auth user signup
+POST http://localhost:5000/auth/signup
+Content-Type: application/json
+
+{
+    "username": "user1",
+    "password": "asdfasdf1",
+    "phone": "0911223301"
+    
+    // user role is set to "user" by default
+}
+
+
+###  auth login
+
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "asdfasdf"
+
+}
+
+### ----------Meals----------------
+
+### create meals for admin 
+POST http://localhost:5000/meals
+Content-Type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBob25lIjoiMDkxMjMzNDMwOSIsInJvbGVzIjpbImFkbWluIl0sImlhdCI6MTcxNjQ2NTUzNCwiZXhwIjoxNzE2NTUxOTM0fQ.e-lT-wTcGIU1xQrT8N8NnGH40U2z-KEMOb3NxAzTeF0
+
+{   
+    // We have included this as an example, You should use another data
+    "name": "meal3",
+    "description": "meal1 description",
+    "price": 10.99,
+    "imageUrl": "meal1.jpg",
+    "types": ["Breakfast", "Lunch"],
+    "allergy": "Milk",
+    "fasting": false,
+    "origin": "China"
+}
+
+### update meals for admin
+Patch http://localhost:5000/meals/4
+Content-Type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJhYWRtaW4iLCJwaG9uZSI6IjA5MTEyMjgyMTEiLCJyb2xlcyI6WyJhZG1pbiJdLCJpYXQiOjE3MDUwMjA2MjksImV4cCI6MTcwNTEwNzAyOX0.W5AkqLHQSPrnYc13SDITqWcBM774rJRXoZhr2GvcBUw
+
+{ 
+    "price": 20.99
+}
+
+### delete meals for admin
+DELETE http://localhost:5000/meals/4
+Content-Type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJhYWRtaW4iLCJwaG9uZSI6IjA5MTEyMjgyMTEiLCJyb2xlcyI6WyJhZG1pbiJdLCJpYXQiOjE3MDUwMjA2MjksImV4cCI6MTcwNTEwNzAyOX0.W5AkqLHQSPrnYc13SDITqWcBM774rJRXoZhr2GvcBUw
+
+### get meals for customer or admin
+GET http://localhost:5000/meals
+Content-Type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBob25lIjoiMDkxMjMzNDMwOSIsInJvbGVzIjpbImFkbWluIl0sImlhdCI6MTcxNjQ2NTUzNCwiZXhwIjoxNzE2NTUxOTM0fQ.e-lT-wTcGIU1xQrT8N8NnGH40U2z-KEMOb3NxAzTeF0
+
+
+### get meals by id for customer or admin
+GET http://localhost:5000/meals/1
+Content-Type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlcm5hbWUiOiJjdXN0b21lcjEiLCJwaG9uZSI6IjA5MTEyMjgwMTEiLCJyb2xlcyI6WyJ1c2VyIl0sImlhdCI6MTcwNTAyMTkzMCwiZXhwIjoxNzA1MTA4MzMwfQ.DQVjxOArOEFxhcVRe_x2BjXALxEH8dGdPvJ2DuW0ze8
+
+
+
+### ----------Orders----------------
+
+### create orders for customer
+POST http://localhost:5000/orders
+Content-Type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlcm5hbWUiOiJjdXN0b21lcjEiLCJwaG9uZSI6IjA5MTEyMjgwMTEiLCJyb2xlcyI6WyJ1c2VyIl0sImlhdCI6MTcwNTAyMjY5OCwiZXhwIjoxNzA1MTA5MDk4fQ.AeHX2tzdhRPJLkkc0m9KdkyQsOcwhlMgSfsH6u6UYLA
+
+{
+        "phone": "0912339303",
+        "total_price": 1000,
+        "meals": {
+            "tibes": 4,
+            "shiro": 2,
+            "kitfo": 1
+        },
+        "location": "5-kilo"
+    }
+
+
+### update orders for owner
+Patch http://localhost:5000/orders/3
+Content-Type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJhYWRtaW4iLCJwaG9uZSI6IjA5MTEyMjgyMTEiLCJyb2xlcyI6WyJhZG1pbiJdLCJpYXQiOjE3MDUwMjMxMTEsImV4cCI6MTcwNTEwOTUxMX0.Zi02htJ1lj6u6prm682vs3A4vEziOLxyvdK4_egLgPQ
+
+{
+    "completed": true
+}
+
+### delete orders for owner
+DELETE http://localhost:5000/orders/3
+Content-Type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJhYWRtaW4iLCJwaG9uZSI6IjA5MTEyMjgyMTEiLCJyb2xlcyI6WyJhZG1pbiJdLCJpYXQiOjE3MDUwMjMxMTEsImV4cCI6MTcwNTEwOTUxMX0.Zi02htJ1lj6u6prm682vs3A4vEziOLxyvdK4_egLgPQ
+
+
+### get all  orders for owner
+Get http://localhost:5000/orders/
+Content-Type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJhYWRtaW4iLCJwaG9uZSI6IjA5MTEyMjgyMTEiLCJyb2xlcyI6WyJhZG1pbiJdLCJpYXQiOjE3MDUwMjMxMTEsImV4cCI6MTcwNTEwOTUxMX0.Zi02htJ1lj6u6prm682vs3A4vEziOLxyvdK4_egLgPQ
+
+
+### get orders by id for owner
+Get http://localhost:5000/orders/1
+Content-Type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJhYWRtaW4iLCJwaG9uZSI6IjA5MTEyMjgyMTEiLCJyb2xlcyI6WyJhZG1pbiJdLCJpYXQiOjE3MDUwMjMxMTEsImV4cCI6MTcwNTEwOTUxMX0.Zi02htJ1lj6u6prm682vs3A4vEziOLxyvdK4_egLgPQ
