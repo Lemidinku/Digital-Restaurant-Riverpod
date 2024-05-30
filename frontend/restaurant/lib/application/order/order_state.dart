@@ -1,4 +1,4 @@
-part of 'order_bloc.dart';
+part of 'order_provider.dart';
 
 abstract class OrderState extends Equatable {
   const OrderState();
@@ -14,7 +14,7 @@ class OrderLoading extends OrderState {}
 class OrderLoaded extends OrderState {
   final List<Order> orders;
 
-  const OrderLoaded({required this.orders});
+  OrderLoaded({required this.orders});
 
   @override
   List<Object> get props => [orders];
@@ -23,17 +23,8 @@ class OrderLoaded extends OrderState {
 class OrderError extends OrderState {
   final String message;
 
-  const OrderError({required this.message});
+  OrderError({required this.message});
 
   @override
   List<Object> get props => [message];
-}
-
-class OrderAdded extends OrderState {
-  final Order order;
-
-  const OrderAdded({required this.order});
-
-  @override
-  List<Object> get props => [order];
 }
