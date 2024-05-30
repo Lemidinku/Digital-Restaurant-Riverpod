@@ -1,4 +1,4 @@
-part of 'auth_bloc.dart';
+part of 'auth_provider.dart';
 
 abstract class AuthState extends Equatable {
   const AuthState();
@@ -20,7 +20,7 @@ class AuthAuthenticated extends AuthState {
   List<Object> get props => [user];
 }
 
-class AuthUnauthenticated extends AuthState {} // when the user logs out
+class AuthUnauthenticated extends AuthState {}
 
 class AuthError extends AuthState {
   final String message;
