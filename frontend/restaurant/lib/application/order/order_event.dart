@@ -1,4 +1,4 @@
-part of 'order_bloc.dart';
+part of "order_provider.dart";
 
 abstract class OrderEvent extends Equatable {
   const OrderEvent();

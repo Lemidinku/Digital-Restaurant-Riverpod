@@ -1,5 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-part of 'meal_bloc.dart';
+part of "meal_provider.dart";
 
 abstract class MealEvent extends Equatable {
   const MealEvent();
