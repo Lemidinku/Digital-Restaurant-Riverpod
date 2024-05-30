@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/presentation/rating_stars.dart';
+import 'package:restaurant/presentation/widget/rating_stars.dart';
 
 class FlashOfferCard extends StatelessWidget {
   final String title;

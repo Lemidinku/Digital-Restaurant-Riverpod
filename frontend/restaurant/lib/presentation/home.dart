@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:restaurant/presentation/detail.dart';
-import 'package:restaurant/presentation/rating_stars.dart';
+import 'package:restaurant/presentation/widget/rating_stars.dart';
 import 'package:restaurant/presentation/widget/built_item_card.dart';
 import 'package:restaurant/presentation/widget/meal_col_widget.dart';
 import '../application/meal/meal_bloc.dart';

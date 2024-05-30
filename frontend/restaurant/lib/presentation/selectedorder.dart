@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
-
-// Define a model class for selected food items
-class SelectedFoodItem {
-  final String name;
-  final String image;
-  final double price;
-  int quantity;
-
-  SelectedFoodItem({
-    required this.name,
-    required this.image,
-    required this.price,
-    this.quantity = 1,
-  });
-}
+import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant/Infrastructure/repositories/orderedItems.dart';
+import 'package:restaurant/application/cart/cart_bloc.dart';
+import 'package:restaurant/application/meal/meal_bloc.dart';
+import 'package:restaurant/domain/meal.dart';
+import 'package:restaurant/presentation/addsubmit.dart';
 
 class SelectedOrderPage extends StatefulWidget {
   @override
@@ -21,33 +13,11 @@ class SelectedOrderPage extends StatefulWidget {
 }
 
 class _SelectedOrderPageState extends State<SelectedOrderPage> {
-  // List of selected food items
-  List<SelectedFoodItem> selectedFoods = [
-    SelectedFoodItem(
-      name: 'Pizza',
-      image: 'assets/Pizza.jpg',
-      price: 10.0,
-      quantity: 2,
-    ),
-    SelectedFoodItem(
-      name: 'shiro',
-      image: 'assets/shiro.jpg',
-      price: 8.0,
-      quantity: 1,
-    ),
-    SelectedFoodItem(
-      name: 'genfo',
-      image: 'assets/genfo.jpg',
-      price: 8.0,
-      quantity: 1,
-    ),
-    SelectedFoodItem(
-      name: 'kitfo',
-      image: 'assets/kitfo.jpg',
-      price: 8.0,
-      quantity: 1,
-    ),
-  ];
+  @override
+  void initState() {
+    context.read<CartBloc>().add(CartInitalEvent());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,46 +26,94 @@ class _SelectedOrderPageState extends State<SelectedOrderPage> {
         title: Text('Selected Orders'),
         backgroundColor: Colors.deepOrange,
       ),
-      body: ListView.builder(
-        itemCount: selectedFoods.length,
-        itemBuilder: (context, index) {
-          final foodItem = selectedFoods[index];
-          return Card(
-            margin: EdgeInsets.all(8.0),
-            child: ListTile(
-              leading: Image.asset(
-                foodItem.image,
-                width: 80,
-                height: 80,
-                fit: BoxFit.cover,
-              ),
-              title: Text(foodItem.name),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      body: BlocConsumer<CartBloc, CartState>(
+        listener: (context, state) {
+          // TODO: implement listener
+        },
+        listenWhen: (previous, current) => current is CartActionState,
+        buildWhen: (previous, current) => current is! CartActionState,
+        builder: (context, state) {
+          switch (state.runtimeType) {
+            case CartLoaddingState:
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            case CartSuccessState:
+              final successState = state as CartSuccessState;
+              return Column(
                 children: [
-                  Text('Price: \$${foodItem.price.toStringAsFixed(2)}'),
-                  Text('Quantity: ${foodItem.quantity}'),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: successState.orders.length,
+                      itemBuilder: (context, index) {
+                        final meal = state.orders.keys.elementAt(index);
+                        final quantity = state.orders.values.elementAt(index);
+
+                        return Card(
+                          margin: EdgeInsets.all(8.0),
+                          child: ListTile(
+                            leading: Image.asset(
+                              'assets/Pizza.jpg',
+                              width: 80,
+                              height: 80,
+                              fit: BoxFit.cover,
+                            ),
+                            title: Text(meal.name),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                    'Price: \$${meal.price.toStringAsFixed(2)}'),
+                                Text('Quantity: ${quantity}'),
+                              ],
+                            ),
+                            trailing: IconButton(
+                              icon: Icon(Icons.clear),
+                              onPressed: () {
+                                context
+                                    .read<CartBloc>()
+                                    .add(CartRemoveEvent(removedMeals: meal));
+                              },
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return SubmitOrderPage();
+                      }));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      elevation: 3,
+                      minimumSize: const Size(150, 37),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    child: const Text(
+                      'Submit Order',
+                      style: TextStyle(color: Color(0xFFF97350)),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  )
                 ],
-              ),
-              trailing: IconButton(
-                icon: Icon(Icons.clear),
-                onPressed: () {
-                  setState(() {
-                    selectedFoods.removeAt(index);
-                  });
-                },
-              ),
-            ),
-          );
+              );
+            default:
+              return Container(
+                child: Center(
+                  child: Text('NO Items In the Cart'),
+                ),
+              );
+          }
         },
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: SelectedOrderPage(),
-  ));
 }

@@ -1,31 +1,16 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const PlusMinusInput());
-}
+class PlusMinusInput extends StatelessWidget {
+  final Function increment;
+  final Function decrement;
+  final int quantity;
 
-class PlusMinusInput extends StatefulWidget {
-  const PlusMinusInput({super.key});
-  @override
-  PlusMinusInputState createState() => PlusMinusInputState();
-}
-
-class PlusMinusInputState extends State<PlusMinusInput> {
-  int _value = 0;
-
-  void _increment() {
-    setState(() {
-      _value++;
-    });
-  }
-
-  void _decrement() {
-    setState(() {
-      if (_value > 0) {
-        _value--;
-      }
-    });
-  }
+  const PlusMinusInput({
+    Key? key,
+    required this.quantity,
+    required this.increment,
+    required this.decrement,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +26,7 @@ class PlusMinusInputState extends State<PlusMinusInput> {
               IconButton(
                 iconSize: 15.0,
                 icon: const Icon(Icons.remove),
-                onPressed: _decrement,
+                onPressed: () => decrement(),
               ),
               Container(
                 width: 40.0,
@@ -49,7 +34,7 @@ class PlusMinusInputState extends State<PlusMinusInput> {
                 child: TextField(
                   textAlign: TextAlign.center,
                   keyboardType: TextInputType.number,
-                  controller: TextEditingController(text: _value.toString()),
+                  controller: TextEditingController(text: quantity.toString()),
                   readOnly: true,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -59,7 +44,7 @@ class PlusMinusInputState extends State<PlusMinusInput> {
               IconButton(
                 iconSize: 15.0,
                 icon: const Icon(Icons.add),
-                onPressed: _increment,
+                onPressed: () => increment(),
               ),
             ],
           ),

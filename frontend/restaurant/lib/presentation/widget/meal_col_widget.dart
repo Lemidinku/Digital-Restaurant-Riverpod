@@ -1,11 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import 'package:restaurant/back-dio-bloc.dart';
 import 'package:restaurant/domain/meal.dart';
 
 import 'package:restaurant/presentation/detail.dart';
-import 'package:restaurant/presentation/rating_stars.dart';
+import 'package:restaurant/presentation/widget/rating_stars.dart';
 
 class MealTail extends StatelessWidget {
   final Meal meals;

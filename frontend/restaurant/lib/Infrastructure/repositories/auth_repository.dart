@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:ffi';
+import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:http/http.dart' as http;
 import '../../domain/user.dart';
 import '../../storage.dart';
@@ -25,7 +27,7 @@ class AuthRepository {
     }
   }
 
-  Future<User> signup(String username, String password, String phone) async {
+  Future<bool> signup(String username, String password, String phone) async {
     final response = await http.post(
       Uri.parse('$baseUrl/auth/signup'),
       headers: {'Content-Type': 'application/json'},
@@ -35,9 +37,32 @@ class AuthRepository {
 
     Map<String, dynamic> returned = json.decode(response.body);
     if (returned['success'] == true) {
-      return User.fromJson(returned['user']);
+      return true;
     } else {
       throw Exception('Failed to register');
+    }
+  }
+
+  Future<void> logout() async {
+    await _secureStorage.delete('token');
+  }
+
+  Future<User?> authCheck() async {
+    print('in the repository authCheck');
+    final token = await _secureStorage.read('token');
+    if (token != null) {
+      final decodedToken = JWT.decode(token);
+
+      // Access the payload
+      final payload = decodedToken.payload;
+      print(payload);
+      return User(
+          id: payload['id'],
+          username: payload['username'],
+          phone: payload['phone'],
+          role: payload['roles'][0]);
+    } else {
+      return null;
     }
   }
 }

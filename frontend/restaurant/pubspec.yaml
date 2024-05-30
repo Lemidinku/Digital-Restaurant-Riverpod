@@ -44,6 +44,7 @@ dependencies:
   json_annotation: ^4.9.0
   get: ^4.6.6
   flutter_secure_storage: ^4.2.1
+  dart_jsonwebtoken: ^2.14.0
 
 
 dev_dependencies:

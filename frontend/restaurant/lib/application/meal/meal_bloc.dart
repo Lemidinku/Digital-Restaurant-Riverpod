@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:restaurant/Infrastructure/repositories/orderedItems.dart';
 import "../../domain/meal.dart";
 import '../../Infrastructure/repositories/meal_repository.dart';
 
@@ -22,11 +25,33 @@ class MealBloc extends Bloc<MealEvent, MealState> {
         emit(MealError(message: e.toString()));
       }
     });
+    on<AddMeal>((event, emit) async {
+      emit(MealLoading());
+      try {
+        final meal = await mealRepository.addMeal(event.meal);
+        emit(MealAdded(meal: meal));
+      } catch (e) {
+        emit(MealError(message: e.toString()));
+      }
+    });
+    on<OrderSelectedButtonEvent>(orderSelectedButtonEvent);
+    on<OrderSelectedOrderButtonEvent>(orderSelectedOrderButtonEvent);
   }
+
+  FutureOr<void> orderSelectedButtonEvent(
+      OrderSelectedButtonEvent event, Emitter<MealState> emit) {
+    print('item selected');
+    orderedItems[event.clickedMeals] = event.quantity;
+
+    emit(MealSelectedButtonActionState());
+  }
+
+  FutureOr<void> orderSelectedOrderButtonEvent(
+      OrderSelectedOrderButtonEvent event, Emitter<MealState> emit) {}
 }
 
 
-
+ 
 
 
 
@@ -54,4 +79,3 @@ class MealBloc extends Bloc<MealEvent, MealState> {
   //     // Handle DeleteMeal event
   //   }
   // }
-

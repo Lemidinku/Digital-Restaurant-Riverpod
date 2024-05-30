@@ -23,14 +23,27 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
 
     on<AuthLogout>((event, emit) async {
-      // await authRepository.logout();
+      await authRepository.logout();
       emit(AuthUnauthenticated());
+    });
+
+    on<AuthCheck>((event, emit) async {
+      print('in the auth_bloc authCheck');
+      final user = await authRepository.authCheck();
+      if (user != null) {
+        emit(AuthAuthenticated(user: user));
+      } else {
+        emit(AuthUnauthenticated());
+      }
     });
 
     on<AuthSignUp>((event, emit) async {
       try {
-        final user = await authRepository.signup(
+        final success = await authRepository.signup(
             event.username, event.password, event.phone);
+        if (!success) {
+          emit(AuthError(message: 'Failed to register'));
+        }
         emit(AuthRegistered());
       } catch (e) {
         emit(AuthError(message: e.toString()));

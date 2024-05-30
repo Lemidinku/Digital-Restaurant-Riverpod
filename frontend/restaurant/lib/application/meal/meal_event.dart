@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'meal_bloc.dart';
 
 abstract class MealEvent extends Equatable {
@@ -35,3 +36,13 @@ class DeleteMeal extends MealEvent {
   @override
   List<Object> get props => [mealId];
 }
+
+class OrderSelectedButtonEvent extends MealEvent {
+  final Meal clickedMeals;
+  final int quantity;
+
+  OrderSelectedButtonEvent(
+      {required this.clickedMeals, required this.quantity});
+}
+
+class OrderSelectedOrderButtonEvent extends MealEvent {}
