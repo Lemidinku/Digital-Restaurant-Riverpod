@@ -46,6 +46,7 @@ dependencies:
   flutter_secure_storage: ^4.2.1
   dart_jsonwebtoken: ^2.14.0
   flutter_riverpod: ^2.5.1
+  mockito: ^5.4.4
 
 dev_dependencies:
   flutter_test:
