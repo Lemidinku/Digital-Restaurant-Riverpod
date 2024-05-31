@@ -14,7 +14,7 @@ import 'package:restaurant/application/order/order_provider.dart';
 import 'package:restaurant/Infrastructure/repositories/order_repository.dart';
 
 // Import generated mocks
-import 'order_repository_test.mocks.dart';
+import 'order_provider_test.mocks.dart';
 
 // This is the annotation for generating mocks
 @GenerateMocks([http.Client])
