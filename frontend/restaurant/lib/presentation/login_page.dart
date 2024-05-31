@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'widget/login-form.dart';
 
@@ -70,7 +71,7 @@ class LoginPage extends StatelessWidget {
                     height: 40,
                     child: TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/signup');
+                        GoRouter.of(context).go('/signup');
                       },
                       child: Text(
                         'Sign Up',

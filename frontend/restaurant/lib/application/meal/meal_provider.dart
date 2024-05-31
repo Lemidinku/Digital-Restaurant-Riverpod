@@ -1,4 +1,3 @@
-// Define a provider for the AuthRepository
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:equatable/equatable.dart';
 import '../../domain/meal.dart';
@@ -13,7 +12,6 @@ final mealRepositoryProvider = Provider<MealRepository>((ref) {
   return MealRepository(baseUrl: BASE_URL);
 });
 
-// Define a provider for the AuthNotifier
 final mealNotifierProvider =
     StateNotifierProvider<MealNotifier, MealState>((ref) {
   final mealRepository = ref.watch(mealRepositoryProvider);

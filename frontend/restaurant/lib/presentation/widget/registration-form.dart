@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant/application/auth/auth_provider.dart';
@@ -19,7 +20,6 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm> {
   final TextEditingController phoneController = TextEditingController();
 
   void handleSignup() {
-    // if (_formKey.currentState!.validate()) {
     final authNotifier = ref.read(authNotifierProvider.notifier);
     authNotifier.handleEvent(
       AuthSignUp(
@@ -28,12 +28,10 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm> {
         password: passwordController.text,
       ),
     );
-    // }
   }
 
   @override
   void dispose() {
-    // Clean up the controllers when the widget is disposed.
     usernameController.dispose();
     passwordController.dispose();
     phoneController.dispose();
@@ -45,7 +43,7 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm> {
     ref.listen<AuthState>(authNotifierProvider, (previous, state) {
       if (state is AuthRegistered) {
         print("Registered successful");
-        Navigator.pushReplacementNamed(context, '/login');
+        GoRouter.of(context).go('/login');
       } else if (state is AuthError) {
         print("Registered not successful");
         ScaffoldMessenger.of(context)
@@ -71,11 +69,10 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm> {
             decoration: InputDecoration(
               hintText: 'Enter your username',
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(
-                    15.0), // Adjust the radius here for more or less curve
+                borderRadius: BorderRadius.circular(15.0),
                 borderSide: const BorderSide(
-                  color: Colors.grey, // Set border color
-                  width: 1.0, // Set border width
+                  color: Colors.grey,
+                  width: 1.0,
                 ),
               ),
               contentPadding:
@@ -94,11 +91,10 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm> {
             decoration: InputDecoration(
               hintText: 'Enter your phone number',
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(
-                    15.0), // Adjust the radius here for more or less curve
+                borderRadius: BorderRadius.circular(15.0),
                 borderSide: const BorderSide(
-                  color: Colors.grey, // Set border color
-                  width: 1.0, // Set border width
+                  color: Colors.grey,
+                  width: 1.0,
                 ),
               ),
               contentPadding:
@@ -117,27 +113,25 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm> {
             decoration: InputDecoration(
               hintText: 'Enter your password',
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(
-                    15.0), // Adjust the radius here for more or less curve
+                borderRadius: BorderRadius.circular(15.0),
                 borderSide: const BorderSide(
-                  color: Colors.grey, // Set border color
-                  width: 1.0, // Set border width
+                  color: Colors.grey,
+                  width: 1.0,
                 ),
               ),
               contentPadding:
-                  EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
             ),
           ),
           const SizedBox(height: 30.0),
           ElevatedButton(
             onPressed: () {
-              // if (_formKey.currentState!.validate()) {
               print(usernameController.text + ' ' + passwordController.text);
               handleSignup();
               // }
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFFF97300), // Background color
+              backgroundColor: const Color(0xFFF97300),
               padding: const EdgeInsets.symmetric(vertical: 10.0),
             ),
             child: Text(

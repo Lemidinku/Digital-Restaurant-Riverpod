@@ -9,6 +9,7 @@ class OrderNotifier extends StateNotifier<OrderState> {
     state = OrderLoading();
     try {
       final orders = await orderRepository.fetchOrders();
+      print('orders loaded successfully ');
       state = OrderLoaded(orders: orders);
     } catch (e) {
       state = OrderError(message: e.toString());
@@ -25,10 +26,9 @@ class OrderNotifier extends StateNotifier<OrderState> {
     }
   }
 
-  Future<void> updateOrder(Order order) async {
+  Future<void> updateOrder({required int id, required bool completed}) async {
     try {
-      await orderRepository.updateOrder(
-          id: order.id, completed: order.completed);
+      await orderRepository.updateOrder(id: id, completed: completed);
       final orders = await orderRepository.fetchOrders();
       state = OrderLoaded(orders: orders);
     } catch (e) {

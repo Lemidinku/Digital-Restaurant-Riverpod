@@ -110,6 +110,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:restaurant/application/auth/auth_provider.dart';
 import 'package:restaurant/presentation/home.dart';
 import 'package:restaurant/presentation/login_page.dart';
@@ -141,7 +142,7 @@ class _BottomNavState extends ConsumerState<BottomNav> {
   Widget build(BuildContext context) {
     ref.listen<AuthState>(authNotifierProvider, (previous, state) {
       if (state is AuthUnauthenticated) {
-        Navigator.pushReplacementNamed(context, '/login');
+        GoRouter.of(context).go('/login');
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Logged Out Successfully')),
         );

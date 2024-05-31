@@ -17,7 +17,6 @@ class AuthNotifier extends StateNotifier<AuthState> {
         state = AuthError(message: e.toString());
       }
     } else if (event is AuthLogout) {
-      // await authRepository.logout();
       state = AuthUnauthenticated();
     } else if (event is AuthSignUp) {
       try {

@@ -6,27 +6,6 @@ import 'package:restaurant/presentation/admin/orderlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
-        useMaterial3: true,
-      ),
-      home: AdminHome(title: 'Digital resturant'),
-    );
-  }
-}
-
 class AdminHome extends StatefulWidget {
   const AdminHome({super.key, required this.title});
 
@@ -42,7 +21,7 @@ class _AdminHomeState extends State<AdminHome> {
   static List<Widget> _widgetOptions = <Widget>[
     AddedFoodsPage(),
     AddFoodPage(),
-    OrderList(),
+    OrdersListPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -57,7 +36,7 @@ class _AdminHomeState extends State<AdminHome> {
       appBar: AppBar(
           title: Text(
         widget.title,
-        style: TextStyle(
+        style: const TextStyle(
             fontSize: 30.0,
             fontWeight: FontWeight.bold,
             fontFamily: AutofillHints.language),
@@ -68,7 +47,7 @@ class _AdminHomeState extends State<AdminHome> {
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              DrawerHeader(
+              const DrawerHeader(
                 decoration: BoxDecoration(
                   color: Colors.deepOrange,
                 ),
@@ -82,43 +61,38 @@ class _AdminHomeState extends State<AdminHome> {
                   ),
                 ),
               ),
-
               ListTile(
-                title: Text('Dashbord',
+                title: const Text('Dashbord',
                     style: TextStyle(fontWeight: FontWeight.bold)),
                 selected: _selectedIndex == 0,
                 onTap: () {
-                  // Update the state of the app
                   _onItemTapped(0);
-                  // Then close the drawer
+
                   Navigator.pop(context);
                 },
               ),
               ListTile(
-                title: Text(
+                title: const Text(
                   'Add Food',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 selected: _selectedIndex == 1,
                 onTap: () {
-                  // Update the state of the app
                   _onItemTapped(1);
-                  // Then close the drawer
+
                   Navigator.pop(context);
                 },
               ),
               ListTile(
-                title: Text('Order List',
+                title: const Text('Order List',
                     style: TextStyle(fontWeight: FontWeight.bold)),
                 selected: _selectedIndex == 2,
                 onTap: () {
-                  // Update the state of the app
                   _onItemTapped(2);
-                  // Then close the drawer
+
                   Navigator.pop(context);
                 },
               ),
-              // Add more list items for other navigable components
             ],
           ),
         ),

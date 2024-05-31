@@ -83,10 +83,9 @@ class _SubmitOrderPageState extends ConsumerState<SubmitOrderPage> {
       totalPrice: totalPrice,
       meals: meals,
       location: location,
-      completed: false, // Assuming orders are not completed initially
+      completed: false,
     ));
 
-    // Display a snackbar or show a dialog to indicate successful submission
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
@@ -94,7 +93,6 @@ class _SubmitOrderPageState extends ConsumerState<SubmitOrderPage> {
       ),
     );
 
-    // Optionally, you can navigate back to the previous screen or clear the form
     _formKey.currentState!.reset();
     _phoneController.clear();
     _locationController.clear();

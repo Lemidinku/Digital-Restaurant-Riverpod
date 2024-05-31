@@ -54,8 +54,7 @@ class MealRepository {
     }
   }
 
-  Future<Meal> updateMeal(
-      String id, String name, String description, String price) async {
+  Future<Meal> updateMeal(String id, Map<String, dynamic> updates) async {
     String? token = await _secureStorage.read('token');
     final response = await http.put(
       Uri.parse('$baseUrl/meals/$id'),
@@ -64,11 +63,13 @@ class MealRepository {
         "authorization": "Bearer $token",
       },
       body: jsonEncode(<String, String>{
-        'name': name,
-        'description': description,
-        'price': price,
+        'name': updates['name'],
+        'description': updates['description'],
+        'price': updates['price'],
+        'imageUrl': updates['imageUrl'],
       }),
     );
+    print(response.body);
     if (response.statusCode == 200) {
       return Meal.fromJson(jsonDecode(response.body));
     } else {
@@ -90,8 +91,6 @@ class MealRepository {
     }
   }
 }
-
-// meal repository test
 
 void main() {
   String baseUrl = 'http://10.0.2.2:9000';

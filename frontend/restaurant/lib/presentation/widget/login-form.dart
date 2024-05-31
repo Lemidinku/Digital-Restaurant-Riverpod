@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../application/auth/auth_provider.dart';
@@ -17,7 +18,6 @@ class _LoginFormState extends ConsumerState<LoginForm> {
   final TextEditingController passwordController = TextEditingController();
 
   void handleLogin() {
-    // if (_formKey.currentState!.validate()) {
     final authNotifier = ref.read(authNotifierProvider.notifier);
     authNotifier.handleEvent(
       AuthLogin(
@@ -25,12 +25,10 @@ class _LoginFormState extends ConsumerState<LoginForm> {
         password: passwordController.text,
       ),
     );
-    // }
   }
 
   @override
   void dispose() {
-    // Clean up the controllers when the widget is disposed.
     usernameController.dispose();
     passwordController.dispose();
     super.dispose();
@@ -47,7 +45,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
     ref.listen<AuthState>(authNotifierProvider, (previous, state) {
       if (state is AuthAuthenticated) {
         print("Login successful");
-        Navigator.pushReplacementNamed(context, '/entry');
+        GoRouter.of(context).go('/entry');
       } else if (state is AuthError) {
         print("Login not successful");
         ScaffoldMessenger.of(context)
@@ -102,7 +100,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                 ),
               ),
               contentPadding:
-                  EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
             ),
           ),
           const SizedBox(height: 30.0),

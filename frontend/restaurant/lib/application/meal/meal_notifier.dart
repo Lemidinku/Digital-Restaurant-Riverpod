@@ -35,7 +35,28 @@ class MealNotifier extends StateNotifier<MealState> {
   }
 
   Future<void> orderSelectedOrderButtonEvent(
-      OrderSelectedOrderButtonEvent event) async {
-    // Implement this if needed
+      OrderSelectedOrderButtonEvent event) async {}
+
+  Future<void> deleteMeal(String id) async {
+    state = MealLoading();
+    try {
+      await mealRepository.deleteMeal(id);
+      final meals = await mealRepository.fetchMeals();
+      state = MealLoaded(meals: meals);
+    } catch (e) {
+      state = MealError(message: e.toString());
+    }
+  }
+
+  Future<void> updateMeal(
+      {required String id, required Map<String, dynamic> updates}) async {
+    state = MealLoading();
+    try {
+      await mealRepository.updateMeal(id, updates);
+      final meals = await mealRepository.fetchMeals();
+      state = MealLoaded(meals: meals);
+    } catch (e) {
+      state = MealError(message: e.toString());
+    }
   }
 }

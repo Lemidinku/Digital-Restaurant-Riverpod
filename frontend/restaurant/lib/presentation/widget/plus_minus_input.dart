@@ -16,7 +16,6 @@ class PlusMinusInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
         width: 150.0,
-        // height: 30.0,
         child: Expanded(
           child: Row(
             mainAxisSize: MainAxisSize.min,
