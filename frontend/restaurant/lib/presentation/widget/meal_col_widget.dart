@@ -91,22 +91,6 @@ class MealTail extends StatelessWidget {
                   rating: 3,
                   size: 15.0,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFF97350),
-                      foregroundColor: Colors.white,
-                      elevation: 0,
-                      minimumSize: const Size(221, 37),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                    ),
-                    child: const Text('Select Order'),
-                  ),
-                ),
               ],
             ),
           ),
