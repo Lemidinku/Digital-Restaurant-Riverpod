@@ -53,6 +53,7 @@ class OrderRepository {
     required int id,
     required bool completed,
   }) async {
+    print(id);
     String? token = await _secureStorage.read('token');
     final response = await http.patch(
       Uri.parse('$baseUrl/orders/$id'),

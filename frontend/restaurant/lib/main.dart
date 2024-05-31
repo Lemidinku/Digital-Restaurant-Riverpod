@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/Infrastructure/repositories/order_repository.dart';
 import 'package:restaurant/presentation/admin/addfood.dart';
+import 'package:restaurant/presentation/admin/dashbord.dart';
+import 'package:restaurant/presentation/admin/orderlist.dart';
 import 'package:restaurant/presentation/bottom_nav.dart';
 import 'package:restaurant/presentation/login_page.dart';
 import 'package:restaurant/presentation/signup_page.dart';
@@ -26,7 +28,9 @@ class MyApp extends StatelessWidget {
             seedColor: const Color.fromRGBO(239, 108, 0, 1)),
         useMaterial3: true,
       ),
-      home: LoginPage(),
+      home: AdminHome(
+        title: "Admin page",
+      ),
       routes: {
         '/entry': (context) => const BottomNav(),
         '/selected': (context) => SelectedOrderPage(),

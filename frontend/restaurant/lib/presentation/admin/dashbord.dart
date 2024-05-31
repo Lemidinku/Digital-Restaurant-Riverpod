@@ -6,27 +6,6 @@ import 'package:restaurant/presentation/admin/orderlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
-        useMaterial3: true,
-      ),
-      home: AdminHome(title: 'Digital resturant'),
-    );
-  }
-}
-
 class AdminHome extends StatefulWidget {
   const AdminHome({super.key, required this.title});
 
@@ -42,7 +21,7 @@ class _AdminHomeState extends State<AdminHome> {
   static List<Widget> _widgetOptions = <Widget>[
     AddedFoodsPage(),
     AddFoodPage(),
-    OrderList(),
+    OrdersListPage(),
   ];
 
   void _onItemTapped(int index) {
