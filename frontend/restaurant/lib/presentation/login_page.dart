@@ -141,8 +141,3 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-
-
-// Function to show the login form as a modal bottom sheet
-
-
