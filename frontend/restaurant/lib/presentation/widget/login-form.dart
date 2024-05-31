@@ -18,7 +18,6 @@ class _LoginFormState extends ConsumerState<LoginForm> {
   final TextEditingController passwordController = TextEditingController();
 
   void handleLogin() {
-    // if (_formKey.currentState!.validate()) {
     final authNotifier = ref.read(authNotifierProvider.notifier);
     authNotifier.handleEvent(
       AuthLogin(
@@ -26,12 +25,10 @@ class _LoginFormState extends ConsumerState<LoginForm> {
         password: passwordController.text,
       ),
     );
-    // }
   }
 
   @override
   void dispose() {
-    // Clean up the controllers when the widget is disposed.
     usernameController.dispose();
     passwordController.dispose();
     super.dispose();
@@ -103,7 +100,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                 ),
               ),
               contentPadding:
-                  EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
             ),
           ),
           const SizedBox(height: 30.0),
