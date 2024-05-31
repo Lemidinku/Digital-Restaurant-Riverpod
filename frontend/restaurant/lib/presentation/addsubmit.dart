@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant/Infrastructure/repositories/orderedItems.dart';
-import 'package:restaurant/application/order/order_bloc.dart';
 import 'package:restaurant/domain/order.dart';
 
 class SubmitOrderPage extends StatefulWidget {

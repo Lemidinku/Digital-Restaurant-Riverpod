@@ -18,30 +18,3 @@ final mealNotifierProvider =
   final mealRepository = ref.watch(mealRepositoryProvider);
   return MealNotifier(mealRepository: mealRepository);
 });
-
-
-
-
-
-
-
-  // MealBloc({required this.mealRepository}) : super(MealInitial());
-
-  // @override
-  // Stream<MealState> mapEventToState(MealEvent event) async* {
-  //   if (event is LoadMeals) {
-  //     yield MealLoading();
-  //     try {
-  //       final meals = await mealRepository.fetchMeals();
-  //       yield MealLoaded(meals: meals);
-  //     } catch (e) {
-  //       yield MealError(message: e.toString());
-  //     }
-  //   } else if (event is AddMeal) {
-  //     // Handle AddMeal event
-  //   } else if (event is UpdateMeal) {
-  //     // Handle UpdateMeal event
-  //   } else if (event is DeleteMeal) {
-  //     // Handle DeleteMeal event
-  //   }
-  // }

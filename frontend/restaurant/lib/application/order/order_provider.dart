@@ -11,6 +11,6 @@ final orderRepositoryProvider = Provider<OrderRepository>((ref) {
   return OrderRepository(baseUrl: 'http://10.0.2.2:5000');
 });
 
-final orderProvider = StateNotifierProvider<OrderNotifier, OrderState>(
+final orderNotifierProvider = StateNotifierProvider<OrderNotifier, OrderState>(
   (ref) => OrderNotifier(orderRepository: ref.watch(orderRepositoryProvider)),
 );

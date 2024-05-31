@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/Infrastructure/repositories/order_repository.dart';
-import 'package:restaurant/application/cart/cart_bloc.dart';
-import 'package:restaurant/application/order/order_bloc.dart';
 import 'package:restaurant/presentation/bottom_nav.dart';
 import 'package:restaurant/presentation/login_page.dart';
 import 'package:restaurant/presentation/signup_page.dart';
-import 'application/meal/meal_bloc.dart';
 import './Infrastructure/repositories/auth_repository.dart';
 import './Infrastructure/repositories/meal_repository.dart';
 import './presentation/selectedorder.dart';

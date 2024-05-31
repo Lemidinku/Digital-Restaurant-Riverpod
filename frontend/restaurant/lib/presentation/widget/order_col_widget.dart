@@ -1,14 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurant/application/meal/meal_bloc.dart';
-import 'package:restaurant/domain/meal.dart';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../domain/meal.dart';
+import '../../application/meal/meal_provider.dart';
 import 'package:restaurant/presentation/detail.dart';
 import 'package:restaurant/presentation/widget/plus_minus_input.dart';
 import 'package:restaurant/presentation/widget/rating_stars.dart';
 
-class OrderTail extends StatefulWidget {
+class OrderTail extends ConsumerStatefulWidget {
   final Meal orders;
 
   const OrderTail({
@@ -17,10 +16,10 @@ class OrderTail extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<OrderTail> createState() => _OrderTailState();
+  _OrderTailState createState() => _OrderTailState();
 }
 
-class _OrderTailState extends State<OrderTail> {
+class _OrderTailState extends ConsumerState<OrderTail> {
   int _quantity = 0;
 
   void _increment() {
@@ -124,10 +123,12 @@ class _OrderTailState extends State<OrderTail> {
                       const EdgeInsets.symmetric(horizontal: 16.0, vertical: 0),
                   child: ElevatedButton(
                     onPressed: () {
-                      // MealBloc.add(
-                      //     OrderSelectedButtonEvent(clickedMeals: orders));
-                      context.read<MealBloc>().add(OrderSelectedButtonEvent(
-                          clickedMeals: widget.orders, quantity: _quantity));
+                      final mealNotifier =
+                          ref.read(mealNotifierProvider.notifier);
+                      mealNotifier.orderSelectedButtonEvent(
+                        OrderSelectedButtonEvent(
+                            clickedMeals: widget.orders, quantity: _quantity),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFF97350),

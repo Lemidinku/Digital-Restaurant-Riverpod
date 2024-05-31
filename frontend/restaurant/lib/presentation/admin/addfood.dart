@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../application/meal/meal_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/meal.dart';
+import '../../application/meal/meal_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class Addpage extends StatelessWidget {
   const Addpage({super.key});
@@ -16,12 +16,12 @@ class Addpage extends StatelessWidget {
   }
 }
 
-class AddFoodPage extends StatefulWidget {
+class AddFoodPage extends ConsumerStatefulWidget {
   @override
   _AddFoodPageState createState() => _AddFoodPageState();
 }
 
-class _AddFoodPageState extends State<AddFoodPage> {
+class _AddFoodPageState extends ConsumerState<AddFoodPage> {
   final _formKey = GlobalKey<FormState>();
 
   final _foodNameController = TextEditingController();
@@ -329,17 +329,16 @@ class _AddFoodPageState extends State<AddFoodPage> {
                       foodType.add('Breakfast');
                     }
 
-                    BlocProvider.of<MealBloc>(context).add(AddMeal(
-                        meal: Meal(
-                            id: 0,
-                            name: foodName,
-                            description: description,
-                            price: price,
-                            imageUrl: photoLink,
-                            types: foodType,
-                            fasting: _isFasting!,
-                            allergy: _allergy,
-                            origin: origin)));
+                    ref.read(mealNotifierProvider.notifier).addMeal(Meal(
+                        id: 0,
+                        name: foodName,
+                        description: description,
+                        price: price,
+                        imageUrl: photoLink,
+                        types: foodType,
+                        fasting: _isFasting!,
+                        allergy: _allergy,
+                        origin: origin));
                   }
                 },
               ),
