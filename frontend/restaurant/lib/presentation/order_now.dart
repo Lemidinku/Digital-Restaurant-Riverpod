@@ -143,7 +143,7 @@ class _OrderNowPage extends ConsumerState<OrderNowPage> {
     } else if (state is MealError) {
       body = Center(child: Text('Error: ${state.message}'));
     } else {
-      body = const Center(child: CircularProgressIndicator());
+      body = const Center(child: Text('Unknown state'));
     }
 
     return body;

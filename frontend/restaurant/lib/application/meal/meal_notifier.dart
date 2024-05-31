@@ -29,9 +29,7 @@ class MealNotifier extends StateNotifier<MealState> {
   }
 
   Future<void> orderSelectedButtonEvent(OrderSelectedButtonEvent event) async {
-    print('item selected');
     orderedItems[event.clickedMeals] = event.quantity;
-    state = MealSelectedButtonActionState();
   }
 
   Future<void> orderSelectedOrderButtonEvent(

@@ -13,7 +13,7 @@ import './Infrastructure/repositories/meal_repository.dart';
 import './presentation/selectedorder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final _router = GoRouter(initialLocation: "/signup", routes: [
+final _router = GoRouter(initialLocation: "/login", routes: [
   GoRoute(
     name: "signup",
     path: '/signup',

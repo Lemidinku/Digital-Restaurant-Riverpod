@@ -5,6 +5,7 @@ import '../../application/meal/meal_provider.dart';
 import 'package:restaurant/presentation/detail.dart';
 import 'package:restaurant/presentation/widget/plus_minus_input.dart';
 import 'package:restaurant/presentation/widget/rating_stars.dart';
+import 'package:restaurant/application/cart/cart_provider.dart';
 
 class OrderTail extends ConsumerStatefulWidget {
   final Meal orders;

@@ -37,7 +37,10 @@ class _LoginFormState extends ConsumerState<LoginForm> {
   @override
   void initState() {
     super.initState();
-    ref.read(authNotifierProvider.notifier).handleEvent(AuthCheck());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(authNotifierProvider.notifier).handleEvent(AuthCheck());
+    });
   }
 
   @override
@@ -45,7 +48,11 @@ class _LoginFormState extends ConsumerState<LoginForm> {
     ref.listen<AuthState>(authNotifierProvider, (previous, state) {
       if (state is AuthAuthenticated) {
         print("Login successful");
-        GoRouter.of(context).go('/entry');
+        if (state.user.role == 'admin') {
+          GoRouter.of(context).go('/admin');
+        } else {
+          GoRouter.of(context).go('/entry');
+        }
       } else if (state is AuthError) {
         print("Login not successful");
         ScaffoldMessenger.of(context)
