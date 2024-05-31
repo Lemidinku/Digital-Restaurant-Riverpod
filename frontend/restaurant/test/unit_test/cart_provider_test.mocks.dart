@@ -78,18 +78,14 @@ class MockMealRepository extends _i1.Mock implements _i3.MealRepository {
   @override
   _i5.Future<_i2.Meal> updateMeal(
     String? id,
-    String? name,
-    String? description,
-    String? price,
+    Map<String, dynamic>? updates,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateMeal,
           [
             id,
-            name,
-            description,
-            price,
+            updates,
           ],
         ),
         returnValue: _i5.Future<_i2.Meal>.value(_FakeMeal_0(
@@ -98,9 +94,7 @@ class MockMealRepository extends _i1.Mock implements _i3.MealRepository {
             #updateMeal,
             [
               id,
-              name,
-              description,
-              price,
+              updates,
             ],
           ),
         )),
