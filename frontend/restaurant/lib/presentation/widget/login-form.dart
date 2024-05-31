@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../application/auth/auth_provider.dart';
@@ -47,7 +48,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
     ref.listen<AuthState>(authNotifierProvider, (previous, state) {
       if (state is AuthAuthenticated) {
         print("Login successful");
-        Navigator.pushReplacementNamed(context, '/entry');
+        GoRouter.of(context).go('/entry');
       } else if (state is AuthError) {
         print("Login not successful");
         ScaffoldMessenger.of(context)
