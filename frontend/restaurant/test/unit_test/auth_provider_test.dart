@@ -44,5 +44,30 @@ void main() {
     });
   });
 
-  // Add more test groups for signup, logout, and authCheck methods
+  group('Signup Tests', () {
+    test('Signup Success', () async {
+      // Mock successful response
+      when(mockAuthRepository.signup('testuser', 'testpassword', '0945358311'))
+          .thenAnswer((_) async => true);
+
+      // Call the signup method
+      final result = await mockAuthRepository.signup(
+          'testuser', 'testpassword', '0945358311');
+
+      // Verify that the signup was successful
+      expect(result, true);
+    });
+    test('Signup Failure', () async {
+      // Mock failed response
+      when(mockAuthRepository.signup(
+              'testuser', 'existingpassword', '0945358311'))
+          .thenThrow(Exception('User already exists'));
+
+      // Call the signup method and expect an exception to be thrown
+      expect(
+          () => mockAuthRepository.signup(
+              'testuser', 'existingpassword', '0945358311'),
+          throwsException);
+    });
+  });
 }
