@@ -23,13 +23,13 @@ class _AddedFoodsPageState extends ConsumerState<AddedFoodsPage> {
     final state = ref.watch(mealNotifierProvider);
 
     Widget body = Container(
-      child: Text('NO content'),
+      child: const Text('NO content'),
     );
 
     if (state is MealSelectedButtonActionState) {
       WidgetsBinding.instance?.addPostFrameCallback((_) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Item selected')),
+          const SnackBar(content: Text('Item selected')),
         );
       });
     }
@@ -43,7 +43,7 @@ class _AddedFoodsPageState extends ConsumerState<AddedFoodsPage> {
     } else if (state is MealLoaded) {
       body = Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             'Meals',
             style: TextStyle(
                 fontSize: 30.0,
@@ -53,7 +53,7 @@ class _AddedFoodsPageState extends ConsumerState<AddedFoodsPage> {
         ),
         body: GridView.count(
           crossAxisCount: 2,
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           mainAxisSpacing: 16.0,
           crossAxisSpacing: 16.0,
           children: state.meals.map((meal) {
@@ -86,39 +86,35 @@ class MealCard extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              height: 30.0, // Set a fixed height for the image
-              decoration: BoxDecoration(
+              height: 30.0,
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(16.0)),
                 child: Image.asset(
                   'assets/Pizza.jpg',
                   fit: BoxFit.cover,
                 ),
               ),
             ),
-            SizedBox(height: 2.0),
+            const SizedBox(height: 2.0),
             Padding(
-              padding: EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     meal.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  // SizedBox(height: 4.0),
-                  // Text(
-                  //   'Kind: ${meal.description}',
-                  //   style: TextStyle(fontSize: 16.0),
-                  // ),
                   Text(
                     'Price: \$${meal.price}',
-                    style: TextStyle(fontSize: 16.0),
+                    style: const TextStyle(fontSize: 16.0),
                   ),
                 ],
               ),
@@ -134,39 +130,35 @@ class MealCard extends ConsumerWidget {
                           meal: meal,
                         );
                       }));
-                      // Handle edit action
                     },
-                    child: Text('Edit'),
+                    child: const Text('Edit'),
                   ),
                 ),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      // Handle delete action
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title: Text('Delete Food Item'),
-                            content: Text(
+                            title: const Text('Delete Food Item'),
+                            content: const Text(
                                 'Are you sure you want to delete this item?'),
                             actions: [
                               TextButton(
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
-                                child: Text('Cancel'),
+                                child: const Text('Cancel'),
                               ),
                               TextButton(
                                 onPressed: () {
-                                  // Perform delete action
                                   Navigator.of(context).pop();
                                   ref
                                       .read(mealNotifierProvider.notifier)
                                       .deleteMeal(meal.id.toString());
-                                  // Assuming deleteMeal is defined in MealNotifier
                                 },
-                                child: Text('Delete'),
+                                child: const Text('Delete'),
                               ),
                             ],
                           );
@@ -175,7 +167,7 @@ class MealCard extends ConsumerWidget {
                     },
                     style:
                         ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: Text('Delete'),
+                    child: const Text('Delete'),
                   ),
                 ),
               ],
