@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant/Infrastructure/repositories/orderedItems.dart';
+import 'package:restaurant/application/order/order_provider.dart';
 import 'package:restaurant/domain/order.dart';
 
-class SubmitOrderPage extends StatefulWidget {
+class SubmitOrderPage extends ConsumerStatefulWidget {
   @override
   _SubmitOrderPageState createState() => _SubmitOrderPageState();
 }
 
-class _SubmitOrderPageState extends State<SubmitOrderPage> {
+class _SubmitOrderPageState extends ConsumerState<SubmitOrderPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    // Hardcoded meals list
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Submit Order'),
@@ -78,21 +77,21 @@ class _SubmitOrderPageState extends State<SubmitOrderPage> {
       totalPrice += meal.price * quantity;
     });
 
-    context.read<OrderBloc>().add(AddOrder(
-            order: Order(
+    ref.read(orderNotifierProvider).addOrder(Order(
           id: 0,
           phone: phone,
           totalPrice: totalPrice,
           meals: meals,
           location: location,
           completed: false, // Assuming orders are not completed initially
-        )));
+        ));
 
     // Display a snackbar or show a dialog to indicate successful submission
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-          content: Text(
-              'Order submitted successfully! Phone: $phone, Location: $location')),
+        content: Text(
+            'Order submitted successfully! Phone: $phone, Location: $location'),
+      ),
     );
 
     // Optionally, you can navigate back to the previous screen or clear the form
