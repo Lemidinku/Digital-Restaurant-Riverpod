@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:restaurant/presentation/detail.dart';
-import 'package:restaurant/presentation/widget/rating_stars.dart';
 import 'package:restaurant/presentation/selectedorder.dart';
 import 'package:restaurant/presentation/widget/order_col_widget.dart';
-import 'widget/plus_minus_input.dart';
 import 'package:restaurant/application/meal/meal_provider.dart';
 
 class OrderNowPage extends ConsumerStatefulWidget {
