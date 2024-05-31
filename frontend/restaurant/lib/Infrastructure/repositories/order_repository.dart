@@ -89,8 +89,6 @@ class OrderRepository {
   }
 }
 
-// order repository test
-
 void main() {
   String baseUrl = 'http://10.0.2.2:9000';
   OrderRepository orderRepository = OrderRepository(baseUrl: baseUrl);

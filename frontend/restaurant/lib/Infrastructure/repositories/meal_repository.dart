@@ -92,8 +92,6 @@ class MealRepository {
   }
 }
 
-// meal repository test
-
 void main() {
   String baseUrl = 'http://10.0.2.2:9000';
   MealRepository mealRepository = MealRepository(baseUrl: baseUrl);

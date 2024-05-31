@@ -53,7 +53,6 @@ class AuthRepository {
     if (token != null) {
       final decodedToken = JWT.decode(token);
 
-      // Access the payload
       final payload = decodedToken.payload;
       print(payload);
       return User(
