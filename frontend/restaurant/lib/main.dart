@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/Infrastructure/repositories/order_repository.dart';
+import 'package:restaurant/presentation/admin/addfood.dart';
 import 'package:restaurant/presentation/bottom_nav.dart';
 import 'package:restaurant/presentation/login_page.dart';
 import 'package:restaurant/presentation/signup_page.dart';
@@ -27,10 +28,10 @@ class MyApp extends StatelessWidget {
       ),
       home: LoginPage(),
       routes: {
-        // '/entry': (context) => BottomNav(),
-        // '/selected': (context) => SelectedOrderPage(),
-        '/login': (context) => LoginPage(),
-        // '/signup': (context) => SignupPage()
+        '/entry': (context) => const BottomNav(),
+        '/selected': (context) => SelectedOrderPage(),
+        '/login': (context) => const LoginPage(),
+        '/signup': (context) => const SignupPage()
       },
     );
   }

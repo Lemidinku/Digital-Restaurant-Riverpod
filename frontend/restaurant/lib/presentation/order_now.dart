@@ -18,7 +18,9 @@ class _OrderNowPage extends ConsumerState<OrderNowPage> {
   @override
   void initState() {
     super.initState();
-    ref.read(mealNotifierProvider.notifier).loadMeals();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(mealNotifierProvider.notifier).loadMeals();
+    });
   }
 
   @override
@@ -144,18 +146,6 @@ class _OrderNowPage extends ConsumerState<OrderNowPage> {
       body = const Center(child: CircularProgressIndicator());
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Restaurant App",
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-      ),
-      body: body,
-    );
+    return body;
   }
 }

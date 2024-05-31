@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant/application/meal/meal_provider.dart';
 import 'package:restaurant/presentation/widget/built_item_card.dart';
@@ -15,7 +16,9 @@ class _HomoPageState extends ConsumerState<HomePage> {
   @override
   void initState() {
     super.initState();
-    ref.read(mealNotifierProvider.notifier).loadMeals();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(mealNotifierProvider.notifier).loadMeals();
+    });
   }
 
   @override
@@ -137,21 +140,9 @@ class _HomoPageState extends ConsumerState<HomePage> {
     } else if (state is MealError) {
       body = Center(child: Text('Error: ${state.message}'));
     } else {
-      body = const Center(child: CircularProgressIndicator());
+      body = const Center(child: Text('Unknown state'));
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Restaurant App",
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-      ),
-      body: body,
-    );
+    return body;
   }
 }

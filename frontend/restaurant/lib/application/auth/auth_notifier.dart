@@ -23,6 +23,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
       try {
         final user = await authRepository.signup(
             event.username, event.password, event.phone);
+        print(user);
         state = AuthRegistered();
       } catch (e) {
         state = AuthError(message: e.toString());

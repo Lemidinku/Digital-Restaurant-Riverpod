@@ -76,15 +76,15 @@ class _SubmitOrderPageState extends ConsumerState<SubmitOrderPage> {
       meals[meal.name] = quantity;
       totalPrice += meal.price * quantity;
     });
-
-    ref.read(orderNotifierProvider).addOrder(Order(
-          id: 0,
-          phone: phone,
-          totalPrice: totalPrice,
-          meals: meals,
-          location: location,
-          completed: false, // Assuming orders are not completed initially
-        ));
+    final orderNotifier = ref.read(orderNotifierProvider.notifier);
+    orderNotifier.addOrder(Order(
+      id: 0,
+      phone: phone,
+      totalPrice: totalPrice,
+      meals: meals,
+      location: location,
+      completed: false, // Assuming orders are not completed initially
+    ));
 
     // Display a snackbar or show a dialog to indicate successful submission
     ScaffoldMessenger.of(context).showSnackBar(

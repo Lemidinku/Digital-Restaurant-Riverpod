@@ -4,12 +4,13 @@ import 'package:equatable/equatable.dart';
 import '../../domain/meal.dart';
 import '../../Infrastructure/repositories/meal_repository.dart';
 import '../../Infrastructure/repositories/orderedItems.dart';
+import '../../core.dart';
 part 'meal_event.dart';
 part 'meal_state.dart';
 part 'meal_notifier.dart';
 
 final mealRepositoryProvider = Provider<MealRepository>((ref) {
-  return MealRepository(baseUrl: 'http://10.0.2.2:5000');
+  return MealRepository(baseUrl: BASE_URL);
 });
 
 // Define a provider for the AuthNotifier
