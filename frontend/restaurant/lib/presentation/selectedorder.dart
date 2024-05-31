@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant/domain/meal.dart';
 import 'package:restaurant/presentation/addsubmit.dart';
-import '../application/cart/cart_provider.dart'; // Update the path as necessary
+import '../application/cart/cart_provider.dart';
 
 class SelectedOrderPage extends ConsumerStatefulWidget {
   @override
@@ -24,11 +24,11 @@ class _SelectedOrderPageState extends ConsumerState<SelectedOrderPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Selected Orders'),
+        title: const Text('Selected Orders'),
         backgroundColor: Colors.deepOrange,
       ),
       body: cartState is CartLoaddingState
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : cartState is CartSuccessState
               ? Column(
                   children: [
@@ -41,7 +41,7 @@ class _SelectedOrderPageState extends ConsumerState<SelectedOrderPage> {
                               cartState.orders.values.elementAt(index);
 
                           return Card(
-                            margin: EdgeInsets.all(8.0),
+                            margin: const EdgeInsets.all(8.0),
                             child: ListTile(
                               leading: Image.asset(
                                 'assets/Pizza.jpg',
@@ -59,7 +59,7 @@ class _SelectedOrderPageState extends ConsumerState<SelectedOrderPage> {
                                 ],
                               ),
                               trailing: IconButton(
-                                icon: Icon(Icons.clear),
+                                icon: const Icon(Icons.clear),
                                 onPressed: () {
                                   ref
                                       .read(cartNotifierProvider.notifier)
@@ -92,12 +92,12 @@ class _SelectedOrderPageState extends ConsumerState<SelectedOrderPage> {
                         style: TextStyle(color: Color(0xFFF97350)),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     )
                   ],
                 )
-              : Center(
+              : const Center(
                   child: Text('NO Items In the Cart'),
                 ),
     );

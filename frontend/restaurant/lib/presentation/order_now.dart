@@ -125,10 +125,10 @@ class _OrderNowPage extends ConsumerState<OrderNowPage> {
               child: GridView.builder(
                 itemCount: state.meals.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // Number of columns
-                  mainAxisSpacing: 8.0, // Spacing between rows
-                  crossAxisSpacing: 8.0, // Spacing between columns
-                  childAspectRatio: 0.7, // Aspect ratio of each item
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 8.0,
+                  crossAxisSpacing: 8.0,
+                  childAspectRatio: 0.7,
                 ),
                 itemBuilder: (context, index) {
                   return OrderTail(
