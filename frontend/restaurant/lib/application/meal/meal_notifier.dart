@@ -35,9 +35,7 @@ class MealNotifier extends StateNotifier<MealState> {
   }
 
   Future<void> orderSelectedOrderButtonEvent(
-      OrderSelectedOrderButtonEvent event) async {
-    // Implement this if needed
-  }
+      OrderSelectedOrderButtonEvent event) async {}
 
   Future<void> deleteMeal(String id) async {
     state = MealLoading();
