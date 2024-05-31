@@ -119,21 +119,6 @@ class _HomoPageState extends ConsumerState<HomePage> {
               ),
             ),
             const SizedBox(height: 20),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: const Color(0xFFF97350),
-                  elevation: 0,
-                  minimumSize: const Size(221, 37),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
-                child: const Text('Order Now'),
-              ),
-            ),
           ],
         ),
       );
