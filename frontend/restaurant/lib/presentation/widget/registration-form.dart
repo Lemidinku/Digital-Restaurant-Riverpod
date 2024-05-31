@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant/application/auth/auth_provider.dart';
@@ -45,7 +46,7 @@ class _RegistrationFormState extends ConsumerState<RegistrationForm> {
     ref.listen<AuthState>(authNotifierProvider, (previous, state) {
       if (state is AuthRegistered) {
         print("Registered successful");
-        Navigator.pushReplacementNamed(context, '/login');
+        GoRouter.of(context).go('/login');
       } else if (state is AuthError) {
         print("Registered not successful");
         ScaffoldMessenger.of(context)
