@@ -36,7 +36,7 @@ class _AdminHomeState extends State<AdminHome> {
       appBar: AppBar(
           title: Text(
         widget.title,
-        style: TextStyle(
+        style: const TextStyle(
             fontSize: 30.0,
             fontWeight: FontWeight.bold,
             fontFamily: AutofillHints.language),
@@ -47,7 +47,7 @@ class _AdminHomeState extends State<AdminHome> {
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              DrawerHeader(
+              const DrawerHeader(
                 decoration: BoxDecoration(
                   color: Colors.deepOrange,
                 ),
@@ -61,43 +61,38 @@ class _AdminHomeState extends State<AdminHome> {
                   ),
                 ),
               ),
-
               ListTile(
-                title: Text('Dashbord',
+                title: const Text('Dashbord',
                     style: TextStyle(fontWeight: FontWeight.bold)),
                 selected: _selectedIndex == 0,
                 onTap: () {
-                  // Update the state of the app
                   _onItemTapped(0);
-                  // Then close the drawer
+
                   Navigator.pop(context);
                 },
               ),
               ListTile(
-                title: Text(
+                title: const Text(
                   'Add Food',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 selected: _selectedIndex == 1,
                 onTap: () {
-                  // Update the state of the app
                   _onItemTapped(1);
-                  // Then close the drawer
+
                   Navigator.pop(context);
                 },
               ),
               ListTile(
-                title: Text('Order List',
+                title: const Text('Order List',
                     style: TextStyle(fontWeight: FontWeight.bold)),
                 selected: _selectedIndex == 2,
                 onTap: () {
-                  // Update the state of the app
                   _onItemTapped(2);
-                  // Then close the drawer
+
                   Navigator.pop(context);
                 },
               ),
-              // Add more list items for other navigable components
             ],
           ),
         ),

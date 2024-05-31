@@ -131,13 +131,13 @@ class _OrderCardState extends ConsumerState<OrderCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(8.0),
-      elevation: 5, // Add elevation for box shadow
+      margin: const EdgeInsets.all(8.0),
+      elevation: 5,
       shadowColor: Colors.grey,
       child: ListTile(
         title: Text(
           'Order: ${widget.order.id}',
-          style: TextStyle(
+          style: const TextStyle(
               fontSize: 20.0,
               fontWeight: FontWeight.bold,
               color: Colors.deepOrange),
@@ -147,17 +147,17 @@ class _OrderCardState extends ConsumerState<OrderCard> {
           children: [
             Row(
               children: [
-                Text('Food: '),
+                const Text('Food: '),
                 ...widget.order.meals.entries.map(
                   (entry) => Text(
                     '${entry.key} ${entry.value}${entry == widget.order.meals.entries.last ? '' : ', '}',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
               ],
             ),
             Text('Price: ${widget.order.totalPrice}'),
-            Text('Date: 2025/5/2'),
+            const Text('Date: 2025/5/2'),
           ],
         ),
         trailing: IconButton(

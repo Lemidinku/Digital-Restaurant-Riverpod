@@ -71,9 +71,9 @@ class _AddFoodPageState extends ConsumerState<AddFoodPage> {
                 decoration: const InputDecoration(
                   labelText: 'Food Name',
                   labelStyle: TextStyle(
-                    color: Colors.red, // Change label text color
-                    fontSize: 16.0, // Change label text size
-                    fontWeight: FontWeight.bold, // Make label text bold
+                    color: Colors.red,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 validator: (value) {
@@ -83,15 +83,15 @@ class _AddFoodPageState extends ConsumerState<AddFoodPage> {
                   return null;
                 },
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               TextFormField(
                 controller: _descriptionController,
                 decoration: const InputDecoration(
                   labelText: 'Food Description',
                   labelStyle: TextStyle(
-                    color: Colors.red, // Change label text color
-                    fontSize: 16.0, // Change label text size
-                    fontWeight: FontWeight.bold, // Make label text bold
+                    color: Colors.red,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 validator: (value) {
@@ -101,15 +101,15 @@ class _AddFoodPageState extends ConsumerState<AddFoodPage> {
                   return null;
                 },
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               TextFormField(
                 controller: _priceController,
                 decoration: const InputDecoration(
                   labelText: 'Price',
                   labelStyle: TextStyle(
-                    color: Colors.red, // Change label text color
-                    fontSize: 16.0, // Change label text size
-                    fontWeight: FontWeight.bold, // Make label text bold
+                    color: Colors.red,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 keyboardType: TextInputType.number,
@@ -120,15 +120,15 @@ class _AddFoodPageState extends ConsumerState<AddFoodPage> {
                   return null;
                 },
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               TextFormField(
                 controller: _photoLinkController,
                 decoration: const InputDecoration(
                   labelText: 'Photo Link',
                   labelStyle: TextStyle(
-                    color: Colors.red, // Change label text color
-                    fontSize: 16.0, // Change label text size
-                    fontWeight: FontWeight.bold, // Make label text bold
+                    color: Colors.red,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 validator: (value) {
@@ -144,9 +144,9 @@ class _AddFoodPageState extends ConsumerState<AddFoodPage> {
                 decoration: const InputDecoration(
                   labelText: 'Origin',
                   labelStyle: TextStyle(
-                    color: Colors.red, // Change label text color
-                    fontSize: 16.0, // Change label text size
-                    fontWeight: FontWeight.bold, // Make label text bold
+                    color: Colors.red,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 validator: (value) {
@@ -209,7 +209,7 @@ class _AddFoodPageState extends ConsumerState<AddFoodPage> {
                   });
                 },
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               const Text(
                 'Food Kind:',
                 style: TextStyle(
@@ -230,7 +230,7 @@ class _AddFoodPageState extends ConsumerState<AddFoodPage> {
                       });
                     },
                   ),
-                  Text('Fasting'),
+                  const Text('Fasting'),
                   Radio(
                     value: true,
                     groupValue: _isFasting,
@@ -242,10 +242,10 @@ class _AddFoodPageState extends ConsumerState<AddFoodPage> {
                       });
                     },
                   ),
-                  Text('Non-Fasting'),
+                  const Text('Non-Fasting'),
                 ],
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               const Text(
                 'Allergy:',
                 style: TextStyle(
@@ -256,7 +256,7 @@ class _AddFoodPageState extends ConsumerState<AddFoodPage> {
               ),
               Row(
                 children: [
-                  Text('Milk'),
+                  const Text('Milk'),
                   Radio(
                     value: 'Milk',
                     groupValue: _allergy,
@@ -266,7 +266,7 @@ class _AddFoodPageState extends ConsumerState<AddFoodPage> {
                       });
                     },
                   ),
-                  Text('Nuts'),
+                  const Text('Nuts'),
                   Radio(
                     value: 'Nuts',
                     groupValue: _allergy,
@@ -276,7 +276,7 @@ class _AddFoodPageState extends ConsumerState<AddFoodPage> {
                       });
                     },
                   ),
-                  Text('Fish'),
+                  const Text('Fish'),
                   Radio(
                     value: 'Fish',
                     groupValue: _allergy,
@@ -286,7 +286,7 @@ class _AddFoodPageState extends ConsumerState<AddFoodPage> {
                       });
                     },
                   ),
-                  Text('Eggs'),
+                  const Text('Eggs'),
                   Radio(
                     value: 'Eggs',
                     groupValue: _allergy,
@@ -305,7 +305,6 @@ class _AddFoodPageState extends ConsumerState<AddFoodPage> {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
 
-                    // Collect form data
                     final foodName = _foodNameController.text;
                     final description = _descriptionController.text;
                     final price = double.parse(_priceController.text);
